@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- root element, ancestor of all elements, parent of
+       head & body -->
+    <head>
+        <style>
+            html {
+                font-family: Helvetica;
+            }
+            *{
+                font-family: inherit;
+            }
+        </style>
+        <!-- child (and descendant) of html, parent of title and 
+       sibling of body -->
+        <meta charset="UTF-8">
+        <!-- By setting charset to "utf-8", we can use any other language 
+        otherwise, we can only use English language -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- The viewport is the user's visible area of a web page. 
+        It varies with the device, and will be smaller on a mobile phone 
+        than on a computer screen.
+        You should include the following <meta> viewport element in 
+        all your web pages: -->
+        <title>Bootcamp 41</title>
+        <!-- descendant of html, child of head and niece of body -->
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    </head>
+    <body>
+        <!-- child (and descendant) of html, sibling of head and
+       aunt of title -->
+       <!-- visible (or rendered) content -->
+        <header>
+            <h1>Document header: HTML and CSS Basics</h1>
+            <nav>
+                <a href="example.html">Welcome Page</a>
+                <a href="https://www.google.com/">Google</a>
+            </nav>
+            <hr/>
+        </header>
+        <section>
+            <article>
+                <h1>Hello, Cohort 41!</h1>
+                <!-- I am an html comment, you won't see me in the browser-->
+                <img src="https://images.unsplash.com/photo-1517423738875-5ce310acd3da?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=810&q=80" alt="Dog Pic1">
+                <img value="" src="./assets/pugLife.jpeg" alt="Dog Pic2">
+                <p>This is our first HTML and CSS class.</p>
+                <p>Another paragraph</p>
+                <div><em>We use this type of tag a lot in Bootcamp for examples</em></div>
+                <p><strong>I am strong and emphasized!</strong></p>
+                <p><abbr>I am an abbreviation</abbr></p>
+                <span>I am a span</span>
+            </article>
+        </section>
+        <section>
+            <aside>
+                <h1>I am an aside</h1>
+                <p><q>This is my paragraph.</q></p>
+                <audio controls>
+                    <source src="path_to_sound_file.mp3"/>
+                </audio>
+                <label id="file-progress" for="file">File Progress</label>
+                <progress id="file" value="70" max="100">70%</progress>
+            </aside>
+        </section>
+        <section>
+            <h3 style="background-color: yellow">List Items</h3>
+            <ul data-content="">
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li>List item 4</li>
+            </ul>
+            <ol>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+                <li>List item 4</li>
+            </ol>
+        </section>
+        <section>
+            <h3>Form section</h3>
+            <form>
+                <input type="text" name="username" placeholder='Username'/>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" />
+
+                <p>Select any option to show you're not a robot:</p>
+
+                <div>
+                <input type="radio" id="optionA" name="drone" value="optionA"
+                        checked>
+                <label for="optionA">optionA</label>
+                </div>
+
+                <div>
+                <input type="radio" id="optionB" name="drone" value="optionB">
+                <label for="optionB">optionB</label>
+                </div>
+
+                <div>
+                <input type="radio" id="optionC" name="drone" value="optionC">
+                <label for="optionC">optionC</label>
+                </div>
+
+                <input type="submit" value="Submit" />
+            </form>
+        </section>
+        <section>
+            <h3>Blocks of code</h3>
+            <code class="my-code">
+                function Panel(element, canClose, closeHandler){
+                    this.element = element;
+                    this.canClose = canClose;
+                    this.closeHandler = function () if (closeHandler) closeHandler()};
+                }
+            </code>
+        </section>
+        <section>
+            <h3>JS Graphics</h3>
+            <canvas class="my-canvas" width="320" height="240"></canvas>
+        </section>
+        <footer>
+            <hr/>
+            <small>Footer: Copyright of Steph</small>
+        </footer>
+    </body>
+</html>

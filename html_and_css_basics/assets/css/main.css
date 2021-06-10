@@ -1,0 +1,54 @@
+#file-progress {
+    margin-left: 150px;
+}
+
+.my-code {
+    background-color: rgb(176, 157, 196);
+}
+
+img {
+    width: 20%;
+    height: 50%;
+}
+
+img[value] {
+    width: 50vw; 
+    height: 70vh;
+}
+
+/* unvisited link */
+a:link {
+    color:darkgreen;
+}
+
+/*visited link */
+a:visited {
+    color:cyan;
+}
+
+div:hover{
+    color:#F22260;
+}
+
+[data-content]:hover {
+   background-color:purple; 
+}
+
+/* to grab all children of ul */
+ul > li {
+    color:salmon;
+}
+
+/* to grab all children expect for last child */
+ul > *:not(:last-child){
+    font-size: 10px;
+}
+
+/* !important */
+p {
+    background-color: red !important;
+}
+
+
+
+
