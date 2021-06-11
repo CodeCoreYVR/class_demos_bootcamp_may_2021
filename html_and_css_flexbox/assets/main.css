@@ -1,0 +1,26 @@
+* {
+    border: thin dotted pink;
+}
+
+body {
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+*[type=hidden] {
+    display: none;
+}
+
+img {
+    width: 500px;
+    height: 400px;
+    float: right;
+}
+
+.container {
+    overflow: auto;
+}
+
+
+
+
+

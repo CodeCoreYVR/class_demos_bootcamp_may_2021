@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/normalize.css">
+    <title>Flex Box</title>
+    
+    <style>
+        .flex-me {
+            display: flex;
+            /* flex-direction: column; */
+            flex-wrap: wrap;
+            /* flex-flow: row wrap; */
+            justify-content: flex-start;
+            align-items: baseline;
+            background-color: azure;
+            border: thin solid teal;
+            border-radius: 5px;
+            min-height: 150px;
+        }
+
+        .flex-me>div {
+            width: 75px;
+            min-height: 75px;
+            background-color: teal;
+            border-radius: 5px;
+        }
+
+        .flex-me>div:nth-child(2n){
+            background-color: firebrick;
+            min-height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Flex Properties</h1>
+    <p>With Flex, you'll discover that far less CSS is required to achieve certain layouts</p>
+    <p>The <strong>Flex Container</strong> behaves like a block element for the most part. It'll 
+    take up the entire width available by default. Its children, <strong>Flex Items</strong>
+    have a special behaviour. Think of the <strong>Flex Container</strong> as the choreographer
+    and <strong>Flex items</strong> as the dancers.
+    </p>
+
+    <h2>Flex Container</h2>
+    <h3>Default</h3>
+    <div class="flex-me"> <!--Applying CSS to make this the flex container-->
+        <div class="num one" style="order: 0"></div>
+        <div class="num two"style="order: 1" >Two</div>
+        <div class="num three" style="flex-grow:1">Three</div>
+        <div class="num four" style="flex-grow:3">Four</div>
+        <div class="num five"></div>
+        <div class="num six">Six</div>
+        <div class="num seven" style="flex-shrink: 2">Seven</div>
+        <div class="num eight" style="order: -99">Eight</div>
+        <div class="num nine"></div>
+        <div class="num ten"></div>
+        <div class="num eleven" style="align-self: stretch">eleven</div>
+        <div class="num twelve"></div>
+        <div class="num thirteen"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+</body>
+</html>
