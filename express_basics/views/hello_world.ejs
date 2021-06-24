@@ -1,1 +1,10 @@
-<h1 style="background-color: blueviolet">Hello World</h1>
+<%- include("./partials/header.ejs")%>
+    <h1 style="background-color: blueviolet">Hello World</h1>
+    <!--This is a html comment-->
+    <%# This is a ejs tag (mosquito) comment %> 
+    <% const textWithEqual = `<h2><em>Italicized Heading, oh yeah!</em></h2>` %>
+    <%= textWithEqual %>
+    <% const textWithDash = `<h2><em>Italicized Heading, oh yeah!</em></h2>` %>
+    <%- textWithDash %>
+<%- include("./partials/footer.ejs")%>
+
