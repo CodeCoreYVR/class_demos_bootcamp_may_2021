@@ -29,6 +29,8 @@
 const express = require('express');
 const app = express();
 
+const cookieParser = require('cookie-parser');
+
 //----------------------STATIC ASSETS---------------------------------->
 //Static asset: require path that's a;ready accessible through express
 //In turn we will use express.static through the path
@@ -45,12 +47,46 @@ app.use(express.static(path.join(__dirname, 'public')));
 //static asset middleware will take all the files and directories within /public
 //and serve them publically with their own url
 
+//-------------------------------COOKIES------------------------------------->
+//Add body parser - we don't need to install body parser anymore, 
+//express has a new method called urlencoded that we'll use instead to parse in x-www-urlencoded format
+//This middleware will decode (parse out) the data that was submitted from the form
+//using  the "POST" HTTP Verb
+
+//When "extended" option is "true", it allows the data to take the shape of arrays and objects
+//And puts all the info on req.body.  Without it, you will only get strings back 
+//the method has other options available as well that we don't need today
+app.use(express.urlencoded({ extended: true }))
+//It will modify the request object given to routes by adding a property to it named body
+//So request.body will be an object containing the data from our form
 
 
+//-----------------------Cookie Parser---------------------------------->
+//install: npm i cookie-parser
+//remember to require at the top
+app.use(cookieParser()); //will parse cookies and put them on request.cookies available as express properties (see express docs)
+//you can still require cookies without this, but in the backend it's hard for us to read
+//every time we make a request to the browser, in the header somewhere there's a cookie header that holds all the info for that cookie
+//cookie parser reads the headers for us and it will parse out the cookies
+//it will read it in whatever format it is, and turns it into a nice JS object for us
 
+//-------------------------Custom Middleware-------------------------------->
+//Remember, order matters! So make sure this is under the urlencoded and cookie-parser
+//because it will depend on it to work properly
 
+app.use((req,res, next) => {
+    const username = req.cookies.username
 
+    //properties set on res.locals become accessible in any views
+    //almost like a global variable
+    res.locals.username = ""
 
+    if(username){
+        res.locals.username = username;
+        console.log(`Signed in as ${username}`)
+    }
+    next();
+})
 
 //-------------------Logging Middleware-------------------------------->
 //install morgan in our npm project: npm i morgan
@@ -81,8 +117,20 @@ app.set('views', 'views')
 //retrieve the set variables.  Mainly to configure application wise variables like the path
 //to the Views directory or path to static files
 
+//-----------------------------HTTP VERBS---------------------------------->
+//GET -> to retreive info from our server (generalization)
+//POST -> req to either add or change to our server's data
+//PATCH -> Update data
+//DELETE -> Remove data
+
+
+//--------------------------ROUTERS------------------------------------------------>
 //-----------Welcome Page------------------------------------------->
 app.get('/', (req, res) => {
+    //add a cookie to home page
+    //convention to expire a cookie with max age
+    const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24; //a day in milliseconds
+    res.cookie('hello','world', {maxAge: COOKIE_MAX_AGE})
     res.render('welcome', {
         title: 'Welcome to my Meme Page',
         memes: [
@@ -104,6 +152,7 @@ app.get('/hello_world', (request, response) => {
 
 //----------Survey page------------------------>
 app.get('/survey', (req, res) => {
+    console.log('Cookies:', req.cookies)
     // res.send("<h1>Survey Page</h1>");
     res.render('survey');
 })
@@ -124,6 +173,23 @@ app.get('/submit', (req, res) => {
     )
 })
 
+//--------------------------Sign In POST request------------------------------>
+app.post('/sign_in', (req, res) => {
+    // res.send(req.body) //this is possible through urlencoded
+    const COOKIE_MAX_AGE = 1000 * 60 * 60 * 24; //a day in milliseconds
+    const username = req.body.username;
+    res.cookie('username', username, {maxAge: COOKIE_MAX_AGE} )
+    res.redirect('/');
+})
+
+//---------------------------Sign Out POST request------------------------------>
+app.post('/sign_out', (req, res) => {
+    
+    res.clearCookie('username')
+    res.redirect('/');
+})
+
+//---------------------------SERVER----------------------------------------------->
 //--------------Start listening on our server------------------------------------->
 const PORT = 3000;
 const DOMAIN = "localhost" // loopback address: 127.0.0.1

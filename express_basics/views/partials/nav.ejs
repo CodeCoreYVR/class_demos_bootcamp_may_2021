@@ -15,7 +15,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/hello_world">Hello World</a>
                 </li>
-                
+                <% if (username) {%>
+                <li>
+                    <span>Hello, <%- username %>!</span>
+                    <form action='/sign_out' method="POST">
+                        <input class='form-control mr-2' type="submit">
+                    </form>
+                </li>
+                <% } else { %>
+                <li>
+                    <form action='/sign_in' method="POST" class='form-inline'>
+                        <input class='form-control mr-2' name='username' placeholder='Username'>
+                        <button type='submit' class='btn btn-outline-dark'>Sign In</button>
+                    </form> 
+                </li>
+                <% } %>
             </ul>
         </div>
       </nav>
