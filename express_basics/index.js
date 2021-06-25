@@ -29,6 +29,9 @@
 const express = require('express');
 const app = express();
 
+//Need to install and require method-override to be enable express to use other HTTP Verbs like PATCH, DELETE, PUT, etc
+const methodOverride = require('method-override') 
+
 const cookieParser = require('cookie-parser');
 
 //----------------------STATIC ASSETS---------------------------------->
@@ -59,6 +62,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }))
 //It will modify the request object given to routes by adding a property to it named body
 //So request.body will be an object containing the data from our form
+
+//----------------------------Method Override Middleware---------------------->
+//Method override looks for a hidden input called _method (name of input)
+//will change the HTTP VERB to the value of that input
+app.use(methodOverride((req, res) => {
+    if (req.body && req.body._method){
+        const method = req.body._method;
+        return method;
+    }
+}));
+
+
 
 
 //-----------------------Cookie Parser---------------------------------->
@@ -188,6 +203,10 @@ app.post('/sign_out', (req, res) => {
     res.clearCookie('username')
     res.redirect('/');
 })
+
+//--------------------------POST ROUTES---------------------------------------->
+const postsRouter = require('./routes/posts');
+app.use('/posts', postsRouter)
 
 //---------------------------SERVER----------------------------------------------->
 //--------------Start listening on our server------------------------------------->
